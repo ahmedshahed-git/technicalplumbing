@@ -1,24 +1,45 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { Hero } from "@/components/site/Hero";
+import { Trust } from "@/components/site/Trust";
+import { Services } from "@/components/site/Services";
+import { Problems } from "@/components/site/Problems";
+import { BeforeAfter } from "@/components/site/BeforeAfter";
+import { WhyChooseUs } from "@/components/site/WhyChooseUs";
+import { HowItWorks } from "@/components/site/HowItWorks";
+import { Testimonials } from "@/components/site/Testimonials";
+import { Contact } from "@/components/site/Contact";
+import { Footer } from "@/components/site/Footer";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
+const title = "Technical Plumbing | A Full Service Plumbing Company";
+const description = "Emergency plumbing, drain cleaning, leak repair, water heaters and more. Call Technical Plumbing at +1 706-312-9477.";
+
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title },
+      { name: "description", content: description },
+      { property: "og:title", content: title },
+      { property: "og:description", content: description },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+  }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
 function Index() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
+    <main>
+      <Hero />
+      <Trust />
+      <Services />
+      <Problems />
+      <BeforeAfter />
+      <WhyChooseUs />
+      <HowItWorks />
+      <Testimonials />
+      <Contact />
+      <Footer />
+    </main>
   );
 }
