@@ -1,14 +1,16 @@
 import { motion } from "motion/react";
-import { Phone, MessageCircle, Star, ChevronDown } from "lucide-react";
+import { useState } from "react";
+import { Phone, MessageCircle, Star, ChevronDown, Menu, X } from "lucide-react";
 import heroImg from "@/assets/hero.jpg";
 import { MESSENGER, NAV, PHONE_DISPLAY, PHONE_HREF } from "@/lib/site";
 
-// To use a looping video, set HERO_VIDEO to an mp4 URL; the image stays as poster/fallback.
+// Drop-in: set HERO_VIDEO to an mp4 URL for a looping background; the photo stays as poster/fallback.
 const HERO_VIDEO = "";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
 export function Hero() {
+  const [open, setOpen] = useState(false);
   return (
     <section className="relative h-[100svh] min-h-[620px] w-full overflow-hidden bg-charcoal text-snow">
       <div className="absolute inset-0">
@@ -21,7 +23,7 @@ export function Hero() {
         <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-transparent to-charcoal/40" />
       </div>
 
-      <header className="relative z-10 mx-auto flex max-w-7xl items-center justify-between px-6 py-6 md:px-10">
+      <header className="relative z-20 mx-auto flex max-w-7xl items-center justify-between px-6 py-6 md:px-10">
         <a href="#" className="font-display text-xl font-semibold tracking-tight">
           Technical<span className="text-terracotta">.</span>Plumbing
         </a>
@@ -30,7 +32,18 @@ export function Hero() {
             <a key={n.href} href={n.href} className="transition hover:text-beige">{n.label}</a>
           ))}
         </nav>
-        <a href={PHONE_HREF} className="hidden text-sm font-semibold text-beige sm:block">{PHONE_DISPLAY}</a>
+        <a href={PHONE_HREF} className="hidden text-sm font-semibold text-beige md:block">{PHONE_DISPLAY}</a>
+        <button type="button" aria-label={open ? "Close menu" : "Open menu"} aria-expanded={open} onClick={() => setOpen((o) => !o)} className="flex h-11 w-11 items-center justify-center rounded-full border border-snow/25 md:hidden">
+          {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+        </button>
+        {open && (
+          <nav aria-label="Mobile" className="absolute inset-x-4 top-20 flex flex-col rounded-2xl border border-snow/10 bg-charcoal/95 p-4 shadow-2xl backdrop-blur md:hidden">
+            {NAV.map((n) => (
+              <a key={n.href} href={n.href} onClick={() => setOpen(false)} className="rounded-lg px-3 py-3 text-lg hover:bg-snow/5">{n.label}</a>
+            ))}
+            <a href={PHONE_HREF} className="btn-primary mt-3 justify-center"><Phone className="h-4 w-4" /> {PHONE_DISPLAY}</a>
+          </nav>
+        )}
       </header>
 
       <div className="relative z-10 mx-auto flex h-[calc(100%-88px)] max-w-7xl flex-col justify-center px-6 pb-20 md:px-10">
@@ -48,7 +61,7 @@ export function Hero() {
           </motion.span>
         </h1>
         <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1, delay: 0.7 }} className="mt-8 max-w-xl text-lg text-snow/75">
-          Repairs, installs and emergencies handled by plumbers who show up prepared, explain the fix clearly and leave your home clean.
+          Technical Plumbing handles repairs, installations and emergencies with quick response, clear communication and a clean finish.
         </motion.p>
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.85, ease }} className="mt-10 flex flex-wrap items-center gap-4">
           <a href={PHONE_HREF} className="btn-primary"><Phone className="h-4 w-4" /> Call Now</a>

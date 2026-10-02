@@ -30,7 +30,7 @@ function CardBody({ r, dark }: { r: R; dark: boolean }) {
         <span className="flex text-terracotta">{Array.from({ length: 5 }).map((_, k) => <Star key={k} className="h-5 w-5 fill-current" />)}</span>
         <Quote className={`h-10 w-10 ${dark ? "text-beige/30" : "text-brown/30"}`} />
       </div>
-      <p className="my-8 font-display text-2xl leading-snug md:text-4xl">{r.text || "Five-star review on Facebook."}</p>
+      <blockquote className={`my-6 font-display leading-snug ${r.text.length > 140 ? "text-xl md:text-2xl" : "text-2xl md:text-4xl"}`}>“{r.text}”</blockquote>
       <div className="flex items-center gap-4">
         <span className="flex h-12 w-12 items-center justify-center rounded-full bg-terracotta font-semibold text-snow">{initials(r.name)}</span>
         <div>
@@ -54,7 +54,7 @@ export function Testimonials() {
           <div className="mx-auto grid w-full max-w-7xl grid-cols-12 gap-10 px-10">
             <div className="col-span-4 self-center">
               <p className="eyebrow mb-4 text-brown">Testimonials</p>
-              <h2 className="text-6xl font-medium leading-none">Seven reviews. <em className="text-terracotta">Seven five stars.</em></h2>
+              <h2 className="text-5xl font-medium leading-none lg:text-6xl">In our customers' <em className="text-terracotta">own words.</em></h2>
             </div>
             <div className="relative col-span-8 h-[480px]">
               {REVIEWS.map((r, i) => <Card key={r.name} r={r} i={i} total={total} progress={scrollYProgress} />)}
@@ -66,7 +66,7 @@ export function Testimonials() {
       <div className="py-20 md:hidden">
         <div className="px-6">
           <p className="eyebrow mb-4 text-brown">Testimonials</p>
-          <h2 className="text-4xl font-medium leading-tight">Seven reviews. <em className="text-terracotta">Seven five stars.</em></h2>
+          <h2 className="text-4xl font-medium leading-tight">In our customers' <em className="text-terracotta">own words.</em></h2>
         </div>
         <div className="mt-10 flex snap-x snap-mandatory gap-4 overflow-x-auto px-6 pb-4">
           {REVIEWS.map((r, i) => (

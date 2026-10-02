@@ -4,7 +4,7 @@ const PROOF = [
   { n: "01", title: "Full-Service Plumbing", note: "From a dripping faucet to a full repipe." },
   { n: "02", title: "Fast Response", note: "Real people answer. Emergencies get priority." },
   { n: "03", title: "Professional Service", note: "Clear quotes, careful work, clean finish." },
-  { n: "07", title: "Customer Reviews", note: "Every one of them five stars." },
+  { n: "07", title: "Customer Reviews", note: "Real words from the people we've worked for." },
 ];
 
 export function Trust() {

@@ -21,8 +21,8 @@ export function WhyChooseUs() {
             <img src={IMG.why} alt="Technical Plumbing technician fitting copper pipes in a home" loading="lazy" width={1200} height={1504} className="aspect-[4/5] w-full object-cover" />
           </motion.div>
           <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.4, duration: 0.8 }} className="absolute -bottom-8 right-4 rounded-2xl bg-charcoal p-6 text-snow shadow-2xl md:-right-10">
-            <p className="font-display text-5xl text-terracotta">5.0</p>
-            <p className="mt-1 text-sm text-snow/70">Average from 7 reviews</p>
+            <p className="font-display text-5xl text-terracotta">7</p>
+            <p className="mt-1 text-sm text-snow/70">Customer reviews</p>
           </motion.div>
         </div>
         <div className="md:col-span-6 md:col-start-7">
